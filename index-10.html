@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="light" style="color-scheme: light;"><head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#0f2547"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דואר חיים על המאירות – מעקב משלוחים</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f3f5f9;--card:#fff;--ink:#0f1b33;--mut:#5b6784;--line:#dfe4ee;--gold:#b8892b;--navy:#0f2547;--ok:#12805c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c30;--ink:#eaf0fb;--mut:#93a0bd;--line:#26314d;--gold:#d9a94a;--navy:#1a2f57;--ok:#3ecf9b}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#131c30;--ink:#eaf0fb;--mut:#93a0bd;--line:#26314d;--gold:#d9a94a;--navy:#1a2f57;--ok:#3ecf9b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#0f2547,#1d3c70);color:#fff;border-radius:16px;padding:18px 20px;border-bottom:3px solid var(--gold)}
+header b{font-size:20px;letter-spacing:.5px}header small{display:block;opacity:.8}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
+h2{margin:0 0 10px;font-size:16px;color:var(--gold)}
+.ref{font-size:26px;font-weight:800;direction:ltr;text-align:right}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border:0}.row span{color:var(--mut)}.row b{text-align:left}
+.steps{display:flex;gap:4px;margin:8px 0}
+.st{flex:1;text-align:center;font-size:11px;color:var(--mut)}
+.st i{display:block;height:6px;border-radius:3px;background:var(--line);margin-bottom:5px}
+.st.on i{background:var(--ok)}.st.on{color:var(--ink);font-weight:700}
+.loc{background:rgba(184,137,43,.12);border:1px solid var(--gold);border-radius:10px;padding:12px;font-weight:700}
+.seal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seal div{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px}
+.seal em{display:block;font-style:normal;color:var(--ok);font-weight:700}
+.hash{font:11px/1.4 monospace;direction:ltr;word-break:break-all;color:var(--mut);margin-top:10px}
+input,select,button{font:inherit;width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);margin-top:6px}
+label{display:block;font-size:13px;color:var(--mut);margin-top:10px}
+button{background:var(--navy);color:#fff;border:0;font-weight:700;cursor:pointer}
+button.g{background:var(--gold);color:#111}button.s{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips button{width:auto;padding:8px 12px;font-size:13px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+footer{text-align:center;color:var(--mut);font-size:12px;margin:22px 0}
+.err{color:#c0392b;font-weight:700}
+
+header{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;flex:none}
+.map{width:100%;height:auto;display:block}
+.tl{position:relative;padding-right:18px;border-right:2px solid var(--line);margin-right:6px}
+.tl div{position:relative;padding:0 0 12px;font-size:14px}
+.tl div:before{content:"";position:absolute;right:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.tl small{display:block;color:var(--mut)}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.badge{display:inline-block;background:var(--ok);color:#fff;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700}
+.eta{font-size:22px;font-weight:800;color:var(--gold)}
+.note{background:rgba(18,128,92,.1);border-right:4px solid var(--ok);padding:10px 12px;border-radius:8px;margin-top:10px}
+a.b{display:block;text-align:center;text-decoration:none;background:var(--navy);color:#fff;border-radius:10px;padding:12px;font-weight:700;margin-top:6px}
+a.b.g{background:var(--gold);color:#111}
+@media print{header~*button,.noprint,.btns{display:none!important}body{background:#fff;color:#000}.card{break-inside:avoid}}
+details{border-bottom:1px dashed var(--line);padding:10px 0}summary{cursor:pointer;font-weight:700}details p{margin:8px 0 0;color:var(--mut);font-size:14px}
+@media print{body.pl header,body.pl footer{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><svg class="logo" viewBox="0 0 64 64"><path d="M32 3 6 13v18c0 16 11 26 26 30 15-4 26-14 26-30V13z" fill="#0f2547" stroke="#d9a94a" stroke-width="3"></path><rect x="17" y="24" width="30" height="20" rx="2" fill="none" stroke="#fff" stroke-width="2.5"></rect><path d="m17 25 15 11 15-11" fill="none" stroke="#d9a94a" stroke-width="2.5"></path></svg><div><b>דואר חיים על המאירות</b><small>מעקב משלוחים וחשבונות · מערכת GBR</small></div><button class="noprint" onclick="fs()" style="width:auto;margin:0;margin-inline-start:auto;padding:6px 12px;background:rgba(255,255,255,.18)">A+</button></header>
+<div id="app"></div>
+<footer><a href="#admin" class="noprint" style="color:inherit;opacity:.55;font-size:12px">כניסת צוות</a><br><div id="syn" class="noprint" style="margin-bottom:6px">🟢 מסונכרן · 22:45:50</div>שירות של <b>דואר חיים על המאירות</b> · נשלח מטעם <b>הניג פתרונות</b><br>המערכת פותחה ומופעלת באמצעות מערכת GBR, סימן של <b>חיים הניג טכנולוגיה</b></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const STATUS=["הופק","נאסף מהשולח","במרכז מיון","בדרך ליעד","נמסר"];
+let API='PASTE_YOUR_APPS_SCRIPT_URL_HERE';try{const q=new URLSearchParams(location.search).get('api');if(q)localStorage.setItem('api',q);const st=localStorage.getItem('api');if(st)API=st}catch(e){}
+const DATA={items:[],cfg:{}};
+const app=document.getElementById('app');const BASE=location.href.split('#')[0].split('?')[0]+(API.startsWith('PASTE')?'':'?api='+encodeURIComponent(API));
+let sf=-1,fq='',sel=new Set(),zi=0,canEdit=false,pin='',loaded=false,editing=null,msg='';
+const fmt=s=>s?new Date(s).toLocaleString('he-IL',{dateStyle:'medium',timeStyle:s.length>10?'short':undefined}):'—';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function sha(o){const b=new TextEncoder().encode(JSON.stringify([o.ref,o.client,o.addr,o.loc,o.baseline,o.stamp,o.eta,o.status]));
+ const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const nowLocal=()=>{const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)};
+
+async function render(){document.body.classList.remove('pl');
+ const h=decodeURIComponent(location.hash.slice(1));
+ if(API.startsWith('PASTE')){app.innerHTML=`<div class="card"><h2>חיבור האתר לשרת הנתונים</h2><p style="margin:0 0 8px">הדבק כאן את כתובת ה-Web app שקיבלת מ-Google Apps Script (מתחילה ב-https://script.google.com/macros/s/):</p><input id="apiu" dir="ltr" placeholder="https://script.google.com/macros/s/.../exec"><button onclick="saveApi()">חבר</button></div>`;return}
+ if(h==='admin'||h==='courier'){if(!canEdit)return teamLogin();try{if(!loaded)await loadAll()}catch(e){canEdit=false;return teamLogin()}return h==='admin'?admin():courier()}
+ if(h){loaded=false;try{await loadRef(h)}catch(e){app.innerHTML='<div class="card err">שגיאת רשת – נסו שוב</div>';return}return client(h)}
+ app.innerHTML=`<div class="card"><h2>ברוכים הבאים</h2><p style="margin:0">עקבו אחר המשלוח או החשבון שלכם בזמן אמת: מיקום נוכחי, מסלול הפצה, תאריך הגעה משוער והיסטוריית עדכונים.</p></div>
+ <div class="card"><h2>איתור משלוח</h2><label>מספר אסמכתא</label>
+ <input id="q" dir="ltr" placeholder="HN-2026-9482" onkeydown="if(event.key==='Enter')go()"><button onclick="go()">מעקב</button></div>
+ ${recentHtml()}<div class="card"><h2>איך זה עובד?</h2><div class="row"><span>1</span><b>מזינים את מספר האסמכתא שקיבלתם</b></div><div class="row"><span>2</span><b>רואים מיקום, מסלול וסטטוס</b></div><div class="row"><span>3</span><b>העמוד מתעדכן אוטומטית</b></div></div>
+ ${canEdit?'<button class="g" onclick="location.hash=\'admin\'">כניסה לפאנל ניהול (צוות בלבד)</button><button class="g" onclick="location.hash=\'courier\'">🚚 מצב שליח (צוות בלבד)</button>':''}`;
+}
+function verify(){const v=document.getElementById('vh').value.trim().toLowerCase();document.getElementById('vr').textContent=v?(v===window.HS?'✔ תואם לרשומה':'✘ לא תואם'):''}
+async function saveCfg(){DATA.cfg={phone:document.getElementById('cfgp').value.trim()};msg=(await persist())?'הגדרות נשמרו ✔':msg;render()}
+function cp(u){try{navigator.clipboard.writeText(u).then(()=>alert('הקישור הועתק'),()=>prompt('העתק:',u))}catch(e){prompt('העתק:',u)}}
+function copyLink(){const u=BASE+'#'+editing.ref;try{navigator.clipboard.writeText(u).then(()=>alert('הקישור הועתק'),()=>prompt('העתק:',u))}catch(e){prompt('העתק:',u)}}
+function fs(){zi=(zi+1)%3;document.body.style.zoom=[1,1.15,1.3][zi]}
+function waNum(p){let d=String(p).replace(/\D/g,'');if(d.startsWith('0'))d='972'+d.slice(1);return d}
+function recentHtml(){try{const r=JSON.parse(localStorage.getItem('rec')||'[]').filter(x=>DATA.items.some(i=>i.ref===x));return r.length?`<div class="card"><h2>נצפו לאחרונה</h2>${r.map(x=>`<div class="item" onclick="location.hash='${esc(x)}'"><b dir="ltr">${esc(x)}</b><span>←</span></div>`).join('')}</div>`:''}catch(e){return ''}}
+function tog(r){sel.has(r)?sel.delete(r):sel.add(r);admin()}
+function selAll(){DATA.items.forEach(o=>sel.add(o.ref));admin()}
+async function bulk(i){const L=document.getElementById('bl').value.trim();if(!confirm('לעדכן '+sel.size+' משלוחים?'))return;const t=nowLocal();DATA.items.forEach(o=>{if(sel.has(o.ref)){o.status=i;if(L)o.loc=L;o.stamp=t;o.hist=(o.hist||[]).concat({t,loc:o.loc,st:i})}});sel.clear();msg=(await persist())?'עודכנו ✔':msg;render()}
+async function exportCsv(){const rows=[['אסמכתא','לקוח','כתובת','מיקום','סטטוס','הפקה','עדכון אחרון','יעד','סוג','עיכוב']].concat(DATA.items.map(o=>[o.ref,o.client,o.addr,o.loc,STATUS[o.status],o.baseline,o.stamp,o.eta,o.type||'',o.delay||'']));const csv='\ufeff'+rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='shipments.csv';a.click()}
+let cn='';try{cn=localStorage.getItem('cn')||''}catch(e){}
+function courier(){const L=DATA.items.map((o,i)=>[o,i]).filter(([o])=>o.status<4&&(!cn||(o.courier||'').includes(cn)));
+ app.innerHTML=`<div class="card"><h2>🚚 מצב שליח</h2>${msg?`<p>${msg}</p>`:''}<label>השם שלי (מסנן את המשלוחים שלי)</label><input value="${esc(cn)}" onchange="cn=this.value.trim();try{localStorage.setItem('cn',cn)}catch(e){}courier()"><small style="color:var(--mut)">${L.length} פתוחים · נמסרו היום: ${DATA.items.filter(o=>o.status===4&&(o.stamp||'').slice(0,10)===nowLocal().slice(0,10)).length}</small></div>
+ ${L.map(([o,i],k)=>`<div class="card" style="${k===0?'border:2px solid var(--gold)':''}">${k===0?'<span class="badge" style="background:var(--gold);color:#111;margin-bottom:6px">התחנה הבאה</span>':''}<div class="ref" style="font-size:20px">#${esc(o.ref)}</div><b>${esc(o.client)}</b><div>${esc(o.addr)}</div>${o.win?`<small>חלון: ${esc(o.win)}</small>`:''}${o.note?`<div class="note">${esc(o.note)}</div>`:''}<span class="badge" style="margin-top:8px">${STATUS[o.status]}</span>
+ <div class="btns" style="margin-top:10px"><a class="b" target="_blank" rel="noopener" href="https://waze.com/ul?q=${encodeURIComponent(o.addr)}&navigate=yes">נווט</a><button onclick="cst(${i},3)">יצאתי לדרך</button></div><button class="g" onclick="deliver(${i})">✔ נמסר</button><button class="s" onclick="failed(${i})">✖ לא נמסר / ניסיון נכשל</button></div>`).join('')||'<div class="card">אין משלוחים פתוחים 🎉</div>'}
+ <button class="s" onclick="location.hash=''">יציאה</button>`}
+async function cst(i,st,recv){const o=DATA.items[i],t=nowLocal();o.status=st;o.stamp=t;if(recv)o.recv=recv;o.loc=st===4?'נמסר בכתובת היעד':'בדרך אל הלקוח';o.hist=(o.hist||[]).concat({t,loc:o.loc,st});msg=(await persist())?'עודכן ✔':msg;render()}
+function deliver(i){const n=prompt('שם המקבל:');if(n===null)return;cst(i,4,n.trim())}
+function qr(el,t){if(!el)return;try{if(window.QRCode){new QRCode(el,{text:t,width:150,height:150})}else{el.style.color='#000';el.textContent=t}}catch(e){el.textContent=t}}
+function share(r){const u=BASE+'#'+r;if(navigator.share)navigator.share({title:'מעקב משלוח '+r,url:u}).catch(()=>{});else cp(u)}
+function dup(){grab();editing={...editing,_new:1,_idx:undefined,ref:'HN-2026-'+Math.floor(1000+Math.random()*9000),hist:[],status:0,stamp:'',delay:'',recv:''};admin()}
+function label(i){const o=DATA.items[i];document.body.classList.add('pl');
+ app.innerHTML=`<div class="card" style="border:3px solid #000;color:#000;background:#fff;text-align:center"><b>דואר חיים על המאירות</b><div class="ref" style="text-align:center;color:#000">#${esc(o.ref)}</div><h2 style="color:#000;font-size:22px">${esc(o.client)}</h2><div style="font-size:20px">${esc(o.addr)}</div><div>${esc(o.svc||'')} ${o.pcs?'· '+esc(o.pcs)+' חבילות':''}</div><div id="ql" style="display:inline-block;margin-top:10px"></div><small style="display:block">נשלח מ-הניג פתרונות · GBR</small></div>
+ <div class="btns noprint"><button onclick="window.print()">🖨 הדפס</button><button class="s" onclick="editing=null;render()">חזרה</button></div>`;qr(document.getElementById('ql'),BASE+'#'+o.ref)}
+function failed(i){const r=prompt('סיבה (לא היה בבית / כתובת שגויה / אחר):');if(r===null)return;const o=DATA.items[i],t=nowLocal();o.delay='ניסיון מסירה נכשל: '+r.trim();o.stamp=t;o.hist=(o.hist||[]).concat({t,loc:'ניסיון מסירה נכשל – '+r.trim(),st:o.status});persist().then(ok=>{msg=ok?'נרשם ✔':msg;render()})}
+function go(){const v=document.getElementById('q').value.trim();if(v)location.hash=v}
+async function client(ref){
+ const o=DATA.items.find(i=>i.ref.toLowerCase()===ref.toLowerCase());
+ if(!o){app.innerHTML=`<div class="card err">לא נמצאה אסמכתא ${esc(ref)}</div><button class="s" onclick="location.hash=''">חזרה</button>`;return}
+ try{let r=JSON.parse(localStorage.getItem('rec')||'[]').filter(x=>x!==o.ref);r.unshift(o.ref);localStorage.setItem('rec',JSON.stringify(r.slice(0,5)))}catch(e){}
+ const hs=await sha(o);
+ const days=o.eta?Math.round((new Date(o.eta.slice(0,10)+'T00:00')-new Date(new Date().toDateString()))/864e5):null;window.HS=hs;
+ const q=encodeURIComponent(o.addr),X=[470,365,260,155,50],cur=X[o.status];
+ const map=`<svg class="map" viewBox="0 0 520 135"><path d="M470 70 Q418 20 365 60 T260 60 T155 60 T50 60" fill="none" stroke="var(--line)" stroke-width="6" stroke-linecap="round" pathLength="100"/>
+ <path d="M470 70 Q418 20 365 60 T260 60 T155 60 T50 60" fill="none" stroke="var(--ok)" stroke-width="6" stroke-linecap="round" pathLength="100" stroke-dasharray="${o.status*25} 200"/>
+ ${X.map((x,i)=>`<circle cx="${x}" cy="${i?60:70}" r="9" fill="${i<=o.status?'var(--ok)':'var(--card)'}" stroke="var(--ok)" stroke-width="3"/><text x="${x}" y="118" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">${STATUS[i]}</text>`).join('')}
+ <text x="${cur}" y="${o.status?38:48}" font-size="24" text-anchor="middle">${o.status===4?'🏠':'🚚'}</text></svg>`;
+ const hist=(o.hist||[]).slice().reverse();
+ app.innerHTML=`<div class="card"><h2>אסמכתא פנימית</h2><div class="ref">#${esc(o.ref)}</div>
+ <span class="badge">${STATUS[o.status]}</span><div style="height:8px;border-radius:4px;background:var(--line);margin-top:10px"><div style="height:8px;border-radius:4px;background:var(--ok);width:${o.status*25}%"></div></div><small style="color:var(--mut)">התקדמות: ${o.status*25}%</small>
+ <div class="loc" style="margin-top:12px">📍 מיקום נוכחי: ${esc(o.loc)}</div>
+ ${o.delay&&o.status<4?`<div class="note" style="background:rgba(192,57,43,.12);border-color:#c0392b">⚠ ${esc(o.delay)}</div>`:''}${o.note?`<div class="note">${esc(o.note)}</div>`:''}</div>
+ <div class="card"><h2>מפת מסלול הפצה</h2>${map}
+ <div class="btns" style="margin-top:8px"><a class="b" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${q}">פתח כתובת ב-Google Maps</a><a class="b g" target="_blank" rel="noopener" href="https://waze.com/ul?q=${q}&navigate=yes">נווט עם Waze</a></div></div>
+ <div class="card"><h2>הגעה משוערת</h2><div class="eta">${fmt(o.eta)}</div>
+ ${days===null?'':o.status===4?'<small>המשלוח נמסר</small>':days<0?'<small>חלף תאריך היעד – בבדיקה</small>':days===0?'<small>צפוי להגיע היום</small>':`<small>בעוד ${days} ימים</small>`}</div>
+ <div class="card"><h2>פרטי המשלוח</h2>
+ <div class="row"><span>מפיץ</span><b>דואר חיים על המאירות</b></div>
+ <div class="row"><span>נשלח מאת</span><b>הניג פתרונות</b></div>
+ <div class="row"><span>לקוח</span><b>${esc(o.client)}</b></div>
+ <div class="row"><span>כתובת יעד (דואר עד הבית)</span><b>${esc(o.addr)}</b></div>
+ ${o.type?`<div class="row"><span>סוג משלוח</span><b>${esc(o.type)}</b></div>`:''}${o.weight?`<div class="row"><span>משקל</span><b>${esc(o.weight)}</b></div>`:''}${o.status===4&&o.recv?`<div class="row"><span>נמסר ל</span><b>${esc(o.recv)}</b></div>`:''}
+ ${o.svc?`<div class="row"><span>רמת שירות</span><b>${esc(o.svc)}</b></div>`:''}${o.pcs?`<div class="row"><span>מספר חבילות</span><b>${esc(o.pcs)}</b></div>`:''}${o.courier&&o.status===3?`<div class="row"><span>שליח</span><b>${esc(o.courier)}</b></div>`:''}${o.win&&o.status<4?`<div class="row"><span>חלון מסירה משוער</span><b>${esc(o.win)}</b></div>`:''}
+ <div class="row"><span>הפקה מבוקרת</span><b>${fmt(o.baseline)}</b></div>
+ <div class="row"><span>עדכון אחרון (חותמת זמן)</span><b>${fmt(o.stamp)}</b></div></div>
+ ${hist.length?`<div class="card"><h2>היסטוריית מעקב</h2><div class="tl">${hist.map(h=>`<div><b>${STATUS[h.st]}</b> · ${esc(h.loc)}<small>${fmt(h.t)}</small></div>`).join('')}</div></div>`:''}
+ <div class="card"><h2>חותמות ואימות נתונים</h2><div class="seal">
+ <div><em>✔ חותמת זמן</em>נרשמה במערכת בעת העדכון האחרון</div>
+ <div><em>✔ חיבור מאובטח</em>העמוד נשלח בהצפנת HTTPS</div>
+ <div><em>✔ טביעת שלמות</em>SHA-256 על נתוני הרשומה</div>
+ <div><em>✔ מקור</em>נשלח מ-הניג פתרונות · מערכת GBR של חיים הניג טכנולוגיה</div></div>
+ <div class="hash">SHA-256: ${hs}</div></div>
+ <div class="card"><h2>משמעות הסטטוסים</h2>${["המסמך הופק ונרשם במערכת","המשלוח נאסף ממקום השולח","המשלוח בטיפול במרכז המיון","המשלוח יצא לכתובת היעד","המשלוח נמסר לנמען"].map((t,i)=>`<div class="row" style="${i===o.status?'font-weight:800;color:var(--ok)':''}"><span style="color:inherit">${STATUS[i]}</span><b style="font-weight:inherit">${t}</b></div>`).join('')}</div>
+ <div class="card noprint" style="text-align:center"><h2>קוד QR לעמוד זה</h2><div id="qrc" style="display:inline-block;background:#fff;padding:8px;border-radius:8px"></div></div>
+ <div class="card"><h2>שאלות נפוצות</h2>
+ <details><summary>מתי המשלוח יגיע?</summary><p>לפי תאריך היעד המשוער המוצג למעלה. התאריך עשוי להשתנות ומתעדכן בעמוד זה.</p></details>
+ <details><summary>המיקום לא התעדכן – למה?</summary><p>המיקום מעודכן על ידי צוות ההפצה. העמוד מתרענן אוטומטית, ואפשר ללחוץ "רענן עכשיו".</p></details>
+ <details><summary>המשלוח מסומן כנמסר ולא קיבלתי</summary><p>פנו אלינו עם מספר האסמכתא, ונבדוק את פרטי המסירה.</p></details>
+ <details><summary>איך משנים כתובת או פרט?</summary><p>פנו אלינו עם מספר האסמכתא בהקדם האפשרי, עדיף לפני שהמשלוח יצא לדרך.</p></details></div>
+ <div class="card"><h2>אימות אסמכתא</h2><small>הדבק טביעת SHA-256 שקיבלת כדי לוודא שהיא תואמת לרשומה הנוכחית</small><input id="vh" dir="ltr" placeholder="SHA-256"><button class="s" onclick="verify()">בדוק</button><b id="vr"></b></div>
+ ${DATA.cfg&&DATA.cfg.phone?`<a class="b g noprint" href="tel:${esc(DATA.cfg.phone)}">📞 לבירורים: ${esc(DATA.cfg.phone)}</a><a class="b noprint" target="_blank" rel="noopener" href="https://wa.me/${waNum(DATA.cfg.phone)}?text=${encodeURIComponent('שלום, בירור לגבי אסמכתא '+o.ref)}">💬 שלח בירור בוואטסאפ</a>`:''}
+ <div class="btns noprint" style="margin-top:14px"><button onclick="window.print()">🖨 הדפס / שמור PDF</button><button class="s" onclick="sync().then(ok=>ok||location.reload())">🔄 רענן עכשיו</button><button class="s" onclick="share('${esc(o.ref)}')">🔗 שתף מעקב</button></div>
+ <p class="noprint" style="text-align:center;color:var(--mut);font-size:12px">העמוד בודק עדכונים אוטומטית כל 15 שניות</p>`;
+ qr(document.getElementById('qrc'),BASE+'#'+o.ref);
+}
+function admin(){
+ if(editing===null){
+  app.innerHTML=`<div class="card"><h2>פאנל ניהול</h2>${msg?`<p>${msg}</p>`:''}<div class="chips" style="margin-bottom:8px"><span class="badge" style="background:var(--ok)">אחוז מסירה: ${DATA.items.length?Math.round(DATA.items.filter(x=>x.status===4).length*100/DATA.items.length):0}%</span><span class="badge" style="background:var(--navy)">סה"כ: ${DATA.items.length}</span><span class="badge" style="background:#c0392b">באיחור: ${DATA.items.filter(x=>x.status<4&&x.eta&&x.eta.slice(0,10)<nowLocal().slice(0,10)).length}</span><span class="badge" style="background:var(--gold);color:#111">עם עיכוב: ${DATA.items.filter(x=>x.status<4&&x.delay).length}</span></div><div class="chips" style="margin-bottom:10px">${STATUS.map((t,i)=>`<span class="badge" onclick="sf=(sf===${i}?-1:${i});admin()" style="cursor:pointer;background:${sf===i?'var(--gold)':'var(--navy)'}">${t}: ${DATA.items.filter(x=>x.status===i).length}</span>`).join('')}</div><input placeholder="🔍 חיפוש לפי אסמכתא, לקוח או כתובת" value="${esc(fq)}" onchange="fq=this.value.trim().toLowerCase();admin()"><div class="chips"><button class="s" onclick="selAll()">בחר הכול</button><button class="s" onclick="sel.clear();admin()">נקה בחירה</button></div>${sel.size?`<div class="card" style="border-color:var(--gold)"><b>עדכון מרוכז (${sel.size} נבחרו)</b><input id="bl" placeholder="מיקום חדש (אופציונלי)"><div class="chips" style="margin-top:8px">${STATUS.map((t,i)=>`<button onclick="bulk(${i})">${t}</button>`).join('')}</div></div>`:''}
+  ${DATA.items.map((o,i)=>(sf<0||o.status===sf)&&(!fq||(o.ref+o.client+o.addr+o.loc).toLowerCase().includes(fq))?`<div class="item" onclick="edit(${i})"><input type="checkbox" style="width:22px;flex:none;margin:0 0 0 10px" ${sel.has(o.ref)?'checked':''} onclick="event.stopPropagation();tog('${esc(o.ref)}')"><div style="flex:1"><b dir="ltr">${esc(o.ref)}</b><br><small>${esc(o.client)} · ${esc(o.loc)}</small></div><b>${STATUS[o.status]}</b></div>`:'').join('')||'<p>אין רשומות</p>'}
+  <button class="g" onclick="edit(-1)">＋ אסמכתא חדשה</button><label>טלפון לבירורים (יוצג ללקוחות)</label><input id="cfgp" dir="ltr" value="${esc((DATA.cfg||{}).phone)}"><button class="s" onclick="saveCfg()">שמור טלפון</button><button class="s" onclick="cp(BASE+'#courier')">📋 העתק קישור מצב שליח</button><button class="s" onclick="exportCsv()">⬇ ייצוא כל המשלוחים ל-CSV</button><button class="s" onclick="location.hash=''">יציאה לתצוגת לקוח</button></div>`;return}
+ const o=editing;
+ app.innerHTML=`<div class="card"><h2>${o._new?'אסמכתא חדשה':'עריכת '+esc(o.ref)}</h2>
+ <label>מספר אסמכתא</label><input id="f_ref" dir="ltr" value="${esc(o.ref)}">
+ <label>שם הלקוח</label><input id="f_client" value="${esc(o.client)}">
+ <label>כתובת מדויקת</label><input id="f_addr" value="${esc(o.addr)}">
+ <label>מיקום נוכחי</label><input id="f_loc" value="${esc(o.loc)}">
+ <label>סטטוס</label><div class="chips">${STATUS.map((s,i)=>`<button class="${i===o.status?'':'s'}" onclick="setSt(${i})">${s}</button>`).join('')}</div>
+ <label>תאריך ושעת הפקה (Baseline)</label><input id="f_baseline" type="datetime-local" value="${esc(o.baseline)}">
+ <label>תאריך יעד משוער</label><input id="f_eta" type="date" value="${esc((o.eta||'').slice(0,10))}">
+ <label>סוג משלוח</label><select id="f_type">${["חבילה","דואר רגיל","דואר רשום","חשבון / מסמך"].map(t=>`<option ${t===o.type?"selected":""}>${t}</option>`).join("")}</select>
+ <label>משקל / כמות (אופציונלי)</label><input id="f_weight" value="${esc(o.weight)}">
+ <label>נמסר ל (שם מקבל, בסטטוס נמסר)</label><input id="f_recv" value="${esc(o.recv)}">
+ <label>רמת שירות</label><select id="f_svc">${["רגיל","אקספרס","יום למחרת"].map(t=>`<option ${t===o.svc?"selected":""}>${t}</option>`).join("")}</select>
+ <label>מספר חבילות</label><input id="f_pcs" type="number" min="1" value="${esc(o.pcs)}">
+ <label>שם השליח</label><input id="f_courier" value="${esc(o.courier)}">
+ <label>חלון מסירה (למשל 14:00–18:00)</label><input id="f_win" value="${esc(o.win)}">
+ <label>⚠ הודעת עיכוב (השאר ריק אם אין)</label><input id="f_delay" value="${esc(o.delay)}">
+ <label>הודעה ללקוח (אופציונלי)</label><input id="f_note" value="${esc(o.note)}">
+ ${o._new?'':`<button class="s" onclick="copyLink()">📋 העתק קישור ללקוח</button><a class="b g" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent('📦 משלוח '+o.ref+'\nלקוח: '+o.client+'\nכתובת: '+o.addr+(o.win?'\nחלון מסירה: '+o.win:'')+(o.note?'\nהערה: '+o.note:'')+'\nניווט: https://waze.com/ul?q='+encodeURIComponent(o.addr)+'&navigate=yes')}">🚚 שלח פרטים לשליח בוואטסאפ</a><a class="b" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent('מעקב משלוח '+o.ref+': '+BASE+'#'+o.ref)}">שלח ללקוח בוואטסאפ</a>`}
+ <p style="color:var(--mut);font-size:13px">חותמת הזמן תתעדכן אוטומטית לזמן השמירה.</p>
+ <button class="g" onclick="save()">שמור ופרסם</button><button class="s" onclick="editing=null;render()">ביטול</button>
+ ${o._new?'':'<button class="s" onclick="dup()">⧉ שכפל משלוח</button><button class="s" onclick="label('+o._idx+')">🖨 הדפס תווית</button><button class="s" onclick="del()">מחק אסמכתא</button>'}</div>`;
+}
+function grab(){for(const k of['ref','client','addr','loc','baseline','eta','note','type','weight','recv','delay','courier','win','svc','pcs'])editing[k]=document.getElementById('f_'+k).value}
+function setSt(i){grab();editing.status=i;admin()}
+function edit(i){msg='';editing=i<0?{_new:1,ref:'HN-2026-'+Math.floor(1000+Math.random()*9000),client:'',addr:'',loc:'',baseline:nowLocal(),eta:'',status:0,type:'חבילה',svc:'רגיל',pcs:'1'}:{...DATA.items[i],_idx:i};admin()}
+function saveApi(){const v=document.getElementById('apiu').value.trim();if(!/^https:\/\/script\.google\.com\/macros\/s\/.+/.test(v)){alert('הכתובת לא נראית נכונה');return}try{localStorage.setItem('api',v)}catch(e){}location.href=location.pathname+'?api='+encodeURIComponent(v)}
+async function api(b){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b)});return r.json()}
+async function loadRef(ref){const r=await fetch(API+'?ref='+encodeURIComponent(ref)+'&t='+Date.now());const d=await r.json();DATA.cfg=d.cfg||{};DATA.items=d.item?[d.item]:[];lastSync=Date.now();showSyn(true)}
+let snap={},cfgSnap='{}';
+function setSnap(){snap=Object.fromEntries(DATA.items.map(i=>[i.ref,JSON.stringify(i)]));cfgSnap=JSON.stringify(DATA.cfg||{})}
+async function loadAll(){const d=await api({action:'all',pin});if(!d.ok)throw new Error('auth');DATA.items=d.items||[];DATA.cfg=d.cfg||{};setSnap();loaded=true;lastSync=Date.now()}
+async function persist(){try{
+ const ups=DATA.items.filter(i=>snap[i.ref]!==JSON.stringify(i)),dels=Object.keys(snap).filter(r=>!DATA.items.some(i=>i.ref===r)),cfg=JSON.stringify(DATA.cfg||{})!==cfgSnap?DATA.cfg:null;
+ if(!ups.length&&!dels.length&&!cfg)return true;
+ const r=await api({action:'patch',pin,ups,dels,cfg});
+ if(r.ok){DATA.items=r.items;DATA.cfg=r.cfg||{};setSnap();return true}
+ msg='שגיאה בשמירה: '+(r.error||'');return false}catch(e){msg='שגיאת רשת – לא נשמר';return false}}
+function teamLogin(){app.innerHTML=`<div class="card"><h2>כניסת צוות</h2><label>קוד גישה</label><input id="pn" type="password" onkeydown="if(event.key==='Enter')tryPin()"><button onclick="tryPin()">כניסה</button></div>`}
+async function tryPin(){const v=document.getElementById('pn').value;try{const r=await api({action:'verify',pin:v});if(r.ok){pin=v;canEdit=true;loaded=false;try{sessionStorage.setItem('pin',v)}catch(e){}render()}else alert('קוד שגוי')}catch(e){alert('שגיאת רשת')}}
+async function save(){grab();const o=editing;if(!o.ref.trim()){alert('נדרש מספר אסמכתא');return}
+ o.stamp=nowLocal();const r={ref:o.ref.trim(),client:o.client,addr:o.addr,loc:o.loc,baseline:o.baseline,stamp:o.stamp,eta:o.eta,status:o.status,note:o.note||'',type:o.type||'',weight:o.weight||'',recv:o.recv||'',delay:o.delay||'',courier:o.courier||'',win:o.win||'',svc:o.svc||'',pcs:o.pcs||'',hist:(o.hist||[]).concat({t:o.stamp,loc:o.loc,st:o.status})};
+ if(o._new)DATA.items.unshift(r);else DATA.items[o._idx]=r;
+ editing=null;msg='נשמר ✔';await persist();render()}
+async function del(){if(!confirm('למחוק?'))return;DATA.items.splice(editing._idx,1);editing=null;await persist();render()}
+window.addEventListener('hashchange',render);
+let lastSync=Date.now();
+function showSyn(ok){const e=document.getElementById('syn');if(e)e.textContent=(ok===false?'⚠ לא הצלחנו לבדוק עדכונים · ':'🟢 מסונכרן · ')+new Date(lastSync).toLocaleTimeString('he-IL')}
+async function sync(){try{const h=decodeURIComponent(location.hash.slice(1)),b=JSON.stringify(DATA);if(canEdit&&(h==='admin'||h==='courier')){if(editing)return true;await loadAll();if(JSON.stringify(DATA)!==b)render()}else if(h&&h!=='admin'&&h!=='courier'){await loadRef(h);if(JSON.stringify(DATA)!==b)client(h)}lastSync=Date.now();showSyn(true);return true}catch(e){showSyn(false);return false}}
+setInterval(()=>{if(!document.hidden&&!editing)sync()},15000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!editing)sync()});showSyn(true);
+render();
+(async()=>{try{const sp=sessionStorage.getItem('pin');if(sp&&!API.startsWith('PASTE')){const r=await api({action:'verify',pin:sp});if(r.ok){pin=sp;canEdit=true}}}catch(e){}render()})();
+</script>
+
+
+</body></html>
